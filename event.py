@@ -9,11 +9,13 @@ access_token = 'EAAM39GiUIEwBAGZA88ZBSbamEy4WcxrjWMdEek2sl98WekVicuR2gULXVfRh9LY
 
 def search(base_url):
 	results = requests.get(base_url)
-	request_text = results.text
+
+        request_text = results.text
 	results_json = json.loads(request_text)
 	for item in results_json['data']:
 		print item['name']
 		print item['id']
+                #print item['description']
 		print ''
 		global count
 		count = count+1
@@ -25,10 +27,13 @@ def search(base_url):
 		print ''
 	else:
 		print ''
+
 def main(key):
  event_keyword=key
  base_url = 'https://graph.facebook.com/v2.6/search?q='+event_keyword+'&type=event&access_token='+access_token
+ #print base_url
+ #print event_keyword
  search(base_url)
  print count
- sys.exit(main(key))
+ #sys.exit()
 
