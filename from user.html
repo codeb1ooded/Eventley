@@ -1,0 +1,46 @@
+<html>
+	<head>
+			<title> User Input </title>
+			<style type="text/css">
+				.likeabutton {
+	    			text-decoration: none; font: menu;
+			    	display: inline-block; padding: 2px 8px;
+	    			background: ButtonFace; color: ButtonText;
+			    	border-style: solid; border-width: 2px;
+	    			border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+				}
+			</style>
+	</head>
+
+	<body>
+		<h1>Welcome to Event Grade </h1>
+			<p>Enter the area to cover </p>
+			<table>
+				<tr>
+					<th><input type="number" id="covered_area" name="covered_area"></th>
+					<th><select id="units_distance" name="units_distance">
+							<option value="miles"> Miles </option>
+							<option value="km"> Kilometers </option>
+							<option value="m"> Metres </option>
+						</select>
+					</th>
+				</tr>
+			</table>
+			<br><br><br><br>
+			<p> Select Category of events you want to see </p>
+			<table>
+				<tr>
+					<th><select id="select_category_event" name="select_category_event">
+							<option value="Fashion"> Fashion </option>
+							<option value="Fun"> Fun </option>
+							<option value="Social"> Social </option>
+							<option value="Spiritual"> Spiritual </option>
+							<option value="Sports"> Sports </option>
+						</select>
+					</th>
+				</tr>
+			</table>
+			<br><br><br><br>
+			<a href="" id="user_input_submit_button" name="user_input_submit_button" class="likeabutton"> Submit </a>
+	</body>	
+</html>
