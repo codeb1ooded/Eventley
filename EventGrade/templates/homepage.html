@@ -13,13 +13,97 @@
 				border-width: 2px; 
 				border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight; 
 			} 
+			#map {
+        		width: 100%;
+        		height: 400px;
+      		}
 		</style> 
-	</head> 
+		</head> 
 	<body> 
 		<h1> Welcome to EventGrade </h1>
 		<br><br>
-		<iframe width="600" height="450" frameborder="10" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=Janpath&key=AIzaSyCPMogO05cW5jLtUt1bOvupmvJjqdXTkAI" allowfullscreen></iframe> 
-		<br><br> 
+		<div id="map"></div>
+		<script type="text/javascript">
+			var markers = [];
+			function initMap() {
+        		var mapDiv = document.getElementById('map');
+            var myLatLng = {lat: 28.6139, lng: 77.2090};
+        		var map = new google.maps.Map(mapDiv, {
+              		center: myLatLng,
+              		zoom: 8,
+          	      mapTypeId: google.maps.MapTypeId.TERRAIN
+          	});
+          		// Try HTML5 geolocation.
+        		if (navigator.geolocation) {
+          			navigator.geolocation.getCurrentPosition(function(position) {
+        			    var pos = {
+            		    lat: position.coords.latitude,
+            				lng: position.coords.longitude
+            			};
+                  var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                  });
+                  document.getElementById("latitude").value = position.coords.latitude;
+                  document.getElementById("longtitude").value = position.coords.longitude;
+                  markers.push(marker);
+            			map.setCenter(pos);
+          			}, function() {
+          			});
+        		} else {
+          			// Browser doesn't support Geolocation
+                var marker = new google.maps.Marker({
+                  position: myLatLng,
+                  map: map,
+                });
+                var infoWindow = new google.maps.InfoWindow({map: map});
+          			handleLocationError(false, infoWindow, map.getCenter());
+        		}
+        		map.addListener('click', function(event) {
+              for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+              var latitude = event.latLng.lat();
+              var longitude = event.latLng.lng();
+              var pos = {
+                    lat: latitude,
+                    lng: longitude
+              };
+              document.getElementById("latitude").value = latitude;
+              document.getElementById("longtitude").value = longitude;
+              var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+              });
+              markers.push(marker);
+        		});
+			}
+		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        	infoWindow.setPosition(pos);
+        	infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+    }
+		</script>
+    	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMbtWFIVdIpjVOQm-AIXbyN6jDbH5NdvU&callback=initMap"></script>
+		<br><br><br><br>
+		<table>
+			<tr>
+				<th> Your location is : </th>
+				<th> {{ location_words }} </th>
+			</tr>
+			<tr>
+				<th> With latitude: </th>
+				<th> <input id="latitude" disabled> </th>
+			</tr>
+			<tr>
+				<th> And longtitude: </th>
+        <th> <input id="longtitude" disabled> </th>
+			</tr>
+		</table>
+		<br><br>
+		<p>If we get you right please submit below: </p>
 		<a href="" id="user_input_submit_button" name="user_input_submit_button" class="likeabutton"> Submit </a> 
 	</body> 
 </html>
