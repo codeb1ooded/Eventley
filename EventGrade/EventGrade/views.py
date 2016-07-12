@@ -5,4 +5,6 @@ from django.template.loader import get_template
 from django.shortcuts import render
  
 def hello(request):
-	return render(request, 'fromuser.html', Context())
+	latitude = request.GET['latitude']
+	longtitude = request.GET['longtitude']
+	return render(request, 'fromuser.html', {'latitude': latitude, 'longtitude': longtitude})

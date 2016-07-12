@@ -96,17 +96,22 @@
               </tr>
               <tr>
                 <th> With latitude: </th>
-                <th> <input id="latitude" disabled> </th>
+                <th> <input id="latitude" type="text" name="latitude" disabled> </th>
               </tr>
               <tr>
                 <th> And longtitude: </th>
-                <th> <input id="longtitude" disabled> </th>
+                <th> <input id="longtitude" type="text" name="longtitude" disabled> </th>
               </tr>
             </table>
             <p>If we get you right please submit below: </p>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onclick="enableInput()">
           </form>
           <br><br>
-          <!--<a href="" id="user_input_submit_button" name="user_input_submit_button" class="likeabutton"> Submit </a> -->
+          <script type="text/javascript">
+            function enableInput(){
+              document.getElementById('latitude').disabled=false;
+              document.getElementById('longtitude').disabled=false;
+            }
+          </script>
         </body> 
         </html>
