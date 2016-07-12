@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from EventGrade.views import hello, my_homepage_view
+from EventGrade.views import hello
+from home.views import my_homepage_view
 
 urlpatterns = [
     url(r'^$', my_homepage_view),
