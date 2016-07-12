@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from EventGrade.views import hello
 from home.views import my_homepage_view
-from waitBackend import wait_for_backend
+from waitBackened.views import wait_for_backend
 
 urlpatterns = [
     url(r'^$', my_homepage_view),

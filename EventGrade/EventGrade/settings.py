@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    'waitBackend.apps.WaitbackenedConfig',
+    'waitBackened.apps.WaitbackenedConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
