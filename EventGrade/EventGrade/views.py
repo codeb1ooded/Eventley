@@ -8,3 +8,6 @@ def hello(request):
 	latitude = request.GET['latitude']
 	longtitude = request.GET['longtitude']
 	return render(request, 'fromuser.html', {'latitude': latitude, 'longtitude': longtitude})
+
+def my_homepage_view(request):
+	return render(request, 'homepage.html', Context())

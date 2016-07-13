@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from EventGrade.views import hello
-from home.views import my_homepage_view
+from  EventGrade.views import my_homepage_view
 from waitBackened.views import wait_for_backend
 
 urlpatterns = [
