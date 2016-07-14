@@ -2,6 +2,7 @@ import eventful
 import unicodecsv as csv
 import codecs
 import random
+from waitBackened.models import event 
 api = eventful.API('mhRcqWrPnjbF86T2')
 img=1
 
@@ -19,18 +20,26 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
        
 				events = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"")
 				num_of_pages = int(events['page_count'])
-			#	try: 
-				for i in range(0, num_of_pages):
-					events = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"", page_number=i)
-					for event in events['events']['event']:
-						print "%s at %s of %s" % (event['title'], event['venue_name'],key)
-						comm = random.randint(10, 50) 
-						likes = random.randint(500, 1000) 
-						count=count+1
-						print count
-    						datawriter.writerow({'id': event['id'], 'title': event['title'], 'venue_name': event['venue_name'], 'number_of_likes':likes, 'number_of_comments':comm, 'key': key})
-				#except:
-				#	print 'exception'
+				try: 
+					for i in range(0, num_of_pages):
+						events = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"", page_number=i)
+						for Event in events['events']['event']:
+							print "%s at %s of %s" % (Event['title'], Event['venue_name'],key)
+							comm = random.randint(10, 50) 
+							likes = random.randint(500, 1000) 
+							eventobj = event()
+							eventobj.event_id = Event['id']
+							eventobj.event_name = Event['title']
+							eventobj.no_likes = likes
+							eventobj.venue_name = Event['venue_name']
+							eventobj.category = key
+							eventobj.no_comments = comm
+							event.save(eventobj)
+							count=count+1
+							print count
+    							datawriter.writerow({'id': Event['id'], 'title': Event['title'], 'venue_name': Event['venue_name'], 'number_of_likes':likes, 'number_of_comments':comm, 'key': key})
+				except:
+					print 'exception'
 
 
 

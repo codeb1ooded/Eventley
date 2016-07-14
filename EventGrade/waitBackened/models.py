@@ -4,8 +4,9 @@ from django.db import models
 
 # Create your models here.
 class event(models.Model):
-	event_id=models.IntegerField(max_length=100),
+	event_id=models.CharField(max_length=100),
 	event_name=models.CharField(max_length=100),
+	venue_name=models.CharField(max_length=100),
 	no_likes=models.IntegerField(max_length=100),
 	category=models.CharField(max_length=100),
 	no_comments=models.IntegerField(max_length=100),
