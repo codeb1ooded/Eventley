@@ -7,14 +7,11 @@ class event(models.Model):
 	event_id=models.IntegerField(max_length=100),
 	event_name=models.CharField(max_length=100),
 	no_likes=models.IntegerField(max_length=100),
+	category=models.CharField(max_length=100),
 	no_comments=models.IntegerField(max_length=100),
 	no_links=models.IntegerField(max_length=100),
 	score=no_links+no_comments+no_likes
 
-class user(models.Model):
-	category=models.CharField(max_length=100),
-	latitude=models.DecimalField(max_digits=100,decimal_places=10),
-	longitude=models.DecimalField(max_digits=100,decimal_places=10)
 
 	
 
