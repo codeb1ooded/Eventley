@@ -29,13 +29,13 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							comm = random.randint(10, 50) 
 							likes = random.randint(500, 1000)
 							eventobj = event()
-							eventobj['Eventid'] = Event['id']
-							eventobj['Eventname'] = Event['title']
-							eventobj['Venuename'] = Event['venue_name']
-							eventobj['Nolikes'] = likes
-							eventobj['Category'] = key
-							eventobj['Nocomments'] = comm
-							eventobj['Nolinks'] = links
+							eventobj.Eventid = Event['id']
+							eventobj.Eventname = Event['title']
+							eventobj.Venuename = Event['venue_name']
+							eventobj.Nolikes = likes
+							eventobj.Category = key
+							eventobj.Nocomments = comm
+							eventobj.Nolinks = links
 							eventobj.save()
 							count=count+1
 							print count
