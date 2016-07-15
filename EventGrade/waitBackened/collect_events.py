@@ -30,8 +30,8 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							eventobj = event()
 							eventobj.event_id = Event['id']
 							eventobj.event_name = Event['title']
-							eventobj.no_likes = likes
 							eventobj.venue_name = Event['venue_name']
+							eventobj.no_likes = likes
 							eventobj.category = key
 							eventobj.no_comments = comm
 							event.save(eventobj)

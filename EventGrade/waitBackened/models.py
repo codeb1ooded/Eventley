@@ -11,8 +11,9 @@ class event(models.Model):
 	category=models.CharField(max_length=100),
 	no_comments=models.IntegerField(max_length=100),
 	no_links=models.IntegerField(max_length=100),
-	score=no_links+no_comments+no_likes
+	#score=no_links+no_comments+no_likes
 
-
+	def _str_(self):
+		return self.event_id + '-' +self.event_name
 	
 
