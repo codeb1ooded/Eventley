@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Data from innerHTML of hidden div</title>
+		<style>
+		body{
+			margin-top: 30px;
+			margin-left:40px;
+		}
+				pre	{
+		border:1px solid red;
+		}
+
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/data.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	</head>
+<body>
+	<div style="width: 800px; margin: 2em auto; padding: 1em; border: 1px solid red; border-radius: 0.5em">
+	Highcharts data load from a csv stored inline in a hidden div
+	</div>
+
+	<div id="container" style="width:1024px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+<pre id="csv" style="display:none">Apples,Pears,Oranges,Bananas,Plums
+John,8,4,6,5
+Jane,3,4,2,3
+Joe,16,26,29,17
+Janet,3,16,13,15
+</pre>
+<script type="text/javascript">
+	$(function () {
+		$('#container').highcharts({
+				chart: {
+					type: 'column'
+				},
+
+			title: {
+				text: 'Fruit Consumtion'
+			},
+
+			subtitle: {
+				text: 'Data input from CSV'
+			},
+
+			data: {
+				csv: document.getElementById('csv').innerHTML
+			},
+
+			plotOptions: {
+				series: {
+					marker: {
+						enabled: false
+					}
+				}
+			},
+			series:[]
+		});
+	});
+</script>
+</body>
+</html>
