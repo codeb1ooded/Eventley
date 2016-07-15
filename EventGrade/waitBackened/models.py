@@ -4,13 +4,13 @@ from django.db import models
 
 # Create your models here.
 class event(models.Model):
-	event_id=models.CharField(max_length=100),
-	event_name=models.CharField(max_length=100),
-	venue_name=models.CharField(max_length=100),
-	no_likes=models.IntegerField(max_length=100),
-	category=models.CharField(max_length=100),
-	no_comments=models.IntegerField(max_length=100),
-	no_links=models.IntegerField(max_length=100),
+	Eventid=models.CharField(max_length=100)
+	Eventname=models.CharField(max_length=100)
+	Venuename=models.CharField(max_length=100)
+	Nolikes=models.IntegerField()
+	Category=models.CharField(max_length=100)
+	Nocomments=models.IntegerField()
+	Nolinks=models.IntegerField()
 	#score=no_links+no_comments+no_likes
 
 	def _str_(self):
