@@ -4,6 +4,8 @@ import codecs
 import random
 from math import radians, cos, sin, asin, sqrt
 from waitBackened.models import event 
+from waitBackened.weather import *
+import datetime
 api = eventful.API('mhRcqWrPnjbF86T2')
 img=1
 
@@ -70,7 +72,9 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 									images = images + 1
 							eventobj.Nolinks = links
 							eventobj.Date = eventCall['start_time']
-							eventobj.Score = 0.25 * distanceScore + 0.75 * eventobj.Nolikes + eventobj.Nocomments + 2 * images + 1.5 * links;
+							days = int(calculateDays(eventCall['start_time']))
+							weatherScore = int(Weather(Event['latitude'], Event['longitude'], days))
+							eventobj.Score = (0.25 * distanceScore + 0.75 * eventobj.Nolikes + eventobj.Nocomments + 2 * images + 1.5 * links) * weatherScore / 2 
 							eventobj.save()
 							count=count+1
 							print count
