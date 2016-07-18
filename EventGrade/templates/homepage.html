@@ -1,5 +1,7 @@
 <html> 
 <head> 
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Kavoon|Lobster|Bungee">
   <title> EventGrade </title> 
   <style type="text/css"> 
   .likeabutton { 
@@ -17,6 +19,17 @@
     width: 100%;
     height: 400px;
   }
+h1{text-align:center;
+font-family:Bungee;
+color:purple;}
+body{background-color:lightblue;}
+.home{text-align:center;
+font-family:Lobster;
+font-size:20px;}
+.home1{text-align:center;
+font-family:Kavoon;
+font-size:25px;
+color:blue;}
   </style> 
 </head> 
 <body> 
@@ -88,7 +101,9 @@
            </script>
            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMbtWFIVdIpjVOQm-AIXbyN6jDbH5NdvU&callback=initMap"></script>
            <br><br><br><br>
+
            <form action="/hello/" method="get">
+<div class="home">
             <table>
               <tr>
                 <th> Your location is : </th>
@@ -103,9 +118,12 @@
                 <th> <input id="longtitude" type="text" name="longtitude" disabled> </th>
               </tr>
             </table>
+</div>
+<div class="home1">
             <p>If we get you right please submit below: </p>
             <input type="submit" value="Submit" onclick="enableInput()">
           </form>
+</div>
           <br><br>
           <script type="text/javascript">
             function enableInput(){
