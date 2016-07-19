@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from plotly.graph_objs import Bar, Scatter, Figure, Layout
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 from django.template import Context, loader, Template
 from django.shortcuts import render_to_response
 from django.template.loader import get_template
@@ -22,19 +24,25 @@ def wait_for_backend(request):
 		x_link = []
 		#Database starts now!!!
     	event.objects.order_by('-Date','-score')
-    	for idd in li:
+    	print len(li)
+    	for i in range(0, len(li)):
+    		idd=li[i]
     		ab = event.objects.filter(Eventid = idd).values()
-    		print ab[0]['Nocomments']
-    		print type(ab)
-    		print type(x_comm)
-    		x_comm.append(ab[0]['Nocomments'])
-    		x_likes.append(ab[0]['Nolikes'])
-    		x_name.append(ab[0]['Eventname'])
-    		x_link.append(ab[0]['NoImages'])
-    		
-   		
-		scatter_diag = plot([Scatter(x=[1, 2, 3], y=[3, 1, 6])], filename='my-graph.html', auto_open=False, output_type='div')
-		bar_diag = plot([Bar(x=['1', '2', '3'], y=[13, 10, 50])], filename='my-bar.html', auto_open=False, output_type='div')
+    		for j in range(0, len(li)):
+    			x_comm.append(ab[j]['Nocomments'])
+    			x_likes.append(ab[j]['Nolikes'])
+    			x_name.append(ab[j]['Eventname'])
+    			x_link.append(ab[j]['NoImages'])
+		fig = {
+			'data': [{'x':[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+			'y': x_comm,
+			'type': 'scatter',
+			'mode': 'lines',
+			}],
+			'layout': {'title': 'Marker Size and Color'}
+		}
+		scatter_diag = plot(fig, filename='my-graph.html', auto_open=False, output_type='div')
+		bar_diag = plot([Bar(x=[x_name[0], x_name[1], x_name[2]], y=[x_comm[0], x_comm[1], x_comm[2]])], filename='my-bar.html', auto_open=False, output_type='div')
 		fig = {
 			'data': [{'labels': ['Residential', 'Non-Residential', 'Utility'],
 			'values': [19, 26, 55],

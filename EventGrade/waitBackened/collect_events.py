@@ -84,6 +84,6 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							eventobj.save()
 							count=count+1
 							print count
-							return li
+						return li
 	#			except:
 	#				print 'exception'
