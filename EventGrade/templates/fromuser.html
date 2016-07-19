@@ -25,6 +25,7 @@ font-size:20px;}
   right: auto;
   text-align: center;
   transform: translate(43%, 0);
+  top-margin : 1000px;
 font-family:Lobster;
 font-size:20px;
 }
@@ -39,6 +40,9 @@ font-size:20px;}
 body {
     background-image: url("back1.jpg");
 }
+/*.t{
+	top-margin: 3000px;
+}*/
 #user_input_submit_button
 	{
 	-moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
@@ -87,17 +91,18 @@ body {
 
 <body>
 	<h1>Eventley</h1>
-	<img style="left-margin:0px 10px 0px 10px; position:absolute; " align="middle" class=logo src="eventley.jpg" />
+	<img style="margin: 0 0 0 800px ; position:absolute; width:250px; height:250px;" align="middle" class=logo src="logo.jpg" />
 	<form action="\wait\">
 <div class="data1">
 		<p>Location you selected: </p>
-		<p id="latitudep">Latitude:
+		<p id="latitude">Latitude:
 		<input id="latitude" type="text" name="latitude" value="{{ latitude }}" disabled></p>
 		<p id="longtitudep">Longtitude: 
 		<input id="longtitude" type="text" name="longtitude" value="{{ longtitude }}" disabled></p><br>
 
 	<p>Enter the area to cover: </p>
 </div>
+<div id='t'>
 <div class="data2">	
 		<table>
 			<tr>
@@ -133,6 +138,7 @@ body {
 <br><br><br><br>
 <div class="button">
 <center><input type="submit" value="Submit" id="user_input_submit_button" name="user_input_submit_button" onclick="return enableInput()"></center>
+</div>
 </div>
 </form>
 
