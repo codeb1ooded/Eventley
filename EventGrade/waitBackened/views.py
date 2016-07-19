@@ -16,14 +16,21 @@ def wait_for_backend(request):
 		li=event_collection(latitude, longtitude, covered_area, units_distance, select_category_event)
 		#j=len(li)
 		i=0
+		x_comm = []
+		x_likes = []
+		x_name = []
+		x_link = []
 		#Database starts now!!!
     	event.objects.order_by('-Date','-score')
     	for idd in li:
-    		Event.object.filter('Eventid' == idd)
-    		x_comm[i]=Event['Nocomments']
-    		x_likes[i]=Event['Nolikes']
-    		x_name[i]=Event['Eventname']
-    		x_link[i]=Event['NoImages']
+    		ab = event.objects.filter(Eventid = idd).values()
+    		print ab[0]['Nocomments']
+    		print type(ab)
+    		print type(x_comm)
+    		x_comm.append(ab[0]['Nocomments'])
+    		x_likes.append(ab[0]['Nolikes'])
+    		x_name.append(ab[0]['Eventname'])
+    		x_link.append(ab[0]['NoImages'])
     		
    		
 		scatter_diag = plot([Scatter(x=[1, 2, 3], y=[3, 1, 6])], filename='my-graph.html', auto_open=False, output_type='div')

@@ -30,6 +30,7 @@ def inKilometeres(distance, units):
 
 
 def event_collection(latitude, longtitude, covered_area, units_distance, select_category_event):
+	#print "Hello world!!!"
 	file_name = "csv/"+select_category_event + '.csv'
 	count=0
 	links=0 
@@ -46,8 +47,8 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 				events = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"")
 				num_of_pages = int(events['page_count'])
 				distanceKm = inKilometeres(float(covered_area), units_distance)
-				try: 
-					for i in range(0, num_of_pages):
+	#			try: 
+				for i in range(0, num_of_pages):
 						events = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"", page_number=i)
 						for Event in events['events']['event']:
 							comm = random.randint(10, 50) 
@@ -56,7 +57,7 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							distanceScore = (float(distanceKm) - float(calculateKm)) * 100
 							distanceScore = distanceScore / distanceKm
 							#list for event-id
-							li[i] = Event['id']
+							li.append(Event['id'])
 							print li[i]
 							######
 							eventobj = event()
@@ -84,5 +85,5 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							count=count+1
 							print count
 							return li
-				except:
-					print 'exception'
+	#			except:
+	#				print 'exception'
