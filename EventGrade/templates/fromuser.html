@@ -95,7 +95,7 @@ body {
 	<form action="\wait\">
 <div class="data1">
 		<p>Location you selected: </p>
-		<p id="latitude">Latitude:
+		<p id="latitudep">Latitude:
 		<input id="latitude" type="text" name="latitude" value="{{ latitude }}" disabled></p>
 		<p id="longtitudep">Longtitude: 
 		<input id="longtitude" type="text" name="longtitude" value="{{ longtitude }}" disabled></p><br>
@@ -148,7 +148,6 @@ body {
               document.getElementById('longtitude').disabled=false;
               var bool = isEmpty();
               if(bool == true){
-              	alert("clear");
                 document.getElementById("latitudep").style.visibility = "hidden";
                 document.getElementById("latitude").style.visibility = "hidden";
 		document.getElementById("longtitudep").style.visibility = "hidden";

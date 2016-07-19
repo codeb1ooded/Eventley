@@ -34,7 +34,7 @@ def wait_for_backend(request):
     			x_likes.append(ab[j]['Nolikes'])
     			x_name.append(ab[j]['Eventname'])
     			x_link.append(ab[j]['NoImages'])
-    			x_score.append(ab[j]['Score'])
+    			x_score.append(int(ab[j]['Score']))
 
 		if len(ab) >= 10 : 
 			fig = {
@@ -49,17 +49,16 @@ def wait_for_backend(request):
 			fig = {
 				'data': [{'x':[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 				'y': x_comm[:10],
-				'type': 'scatter',
-				'mode': 'lines',
+				'type': 'bar'
 				}],
 				'layout': {'title': 'Number of comments'}
 			}
 			bar_diag = plot(fig, filename='my-bar.html', auto_open=False, output_type='div')
 			fig = {
-			'data': [{'labels': x_name[:10],
+			'data': [{'labels': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 				'values': x_score[:10],
 				'type': 'pie',
-				'name': 'Event Comparison',
+				'name': 'Score',
 				'text': 'score',
 				'textposition': 'inside',
 				'hoverinfo': 'label+percent+name',
@@ -69,21 +68,46 @@ def wait_for_backend(request):
 				}
 			pie_chart = plot(fig, filename='my-pie.html', auto_open=False, output_type='div')
 			fig = {
-				'data': [{'x':[1, 2, 3, 4],
-				'y': [10, 11, 12, 13],
+				'data': [{'x':[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+				'y': x_link[:10],
 					'mode': 'markers',
-				'marker': { 'color': ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-				'opacity': [1, 0.8, 0.6, 0.4],
-				'size': [40, 60, 80, 100]
+				'marker': { 'color': ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(0,255,255)', 'rgb(255,0,255)', 'rgb(192,192,192)', 'rgb(128,0,0)', 'rgb(128,128,0)', 'rgb(128,0,128)'],
+				'opacity': [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1],
+				'size': [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
 				 }
 				}],
-				'layout': {'title': 'Marker Size and Color'}
+				'layout': {'title': 'Images'}
 			}
 			bubble_diag = plot(fig, filename='my-bubble.html', auto_open=False, output_type='div')
 		else:
 			arr = []
+			op = []
+			sz = []
+			clr = []
 			for i in range(0, len(ab)):
 				arr.append(i)
+				op.append((10-i)*0.1)
+				sz.append(100)
+				if i == 0:
+					clr.append('rgb(255,0,0)')
+				elif i == 1:
+					clr.append('rgb(0,255,0)')
+				elif i == 2:
+					clr.append('rgb(0,0,255)')
+				elif i == 3:
+					clr.append('rgb(255,255,0)')
+				elif i == 4:
+					clr.append('rgb(0,255,255)')
+				elif i == 5:
+					clr.append('rgb(255,0,255)')
+				elif i == 6:
+					clr.append('rgb(192,192,192)')
+				elif i == 7:
+					clr.append('rgb(128,0,0)')
+				elif i == 8:
+					clr.append('rgb(128,128,0)')
+				elif i == 9:
+					clr.append('rgb(128,0,128)')
 			fig = {
 				'data': [{'x':arr,
 				'y': x_likes,
@@ -96,17 +120,16 @@ def wait_for_backend(request):
 			fig = {
 				'data': [{'x':arr,
 				'y': x_comm,
-				'type': 'scatter',
-				'mode': 'lines',
+				'type': 'bar'
 				}],
 				'layout': {'title': 'Number of comments'}
 			}
 			bar_diag = plot(fig, filename='my-bar.html', auto_open=False, output_type='div')
 			fig = {
-			'data': [{'labels': x_name,
+			'data': [{'labels': arr,
 				'values': x_score,
 				'type': 'pie',
-				'name': 'Event Comparison',
+				'name': 'Score',
 				'text': 'score',
 				'textposition': 'inside',
 				'hoverinfo': 'label+percent+name',
@@ -117,11 +140,11 @@ def wait_for_backend(request):
 			pie_chart = plot(fig, filename='my-pie.html', auto_open=False, output_type='div')
 			fig = {
 				'data': [{'x':[1, 2, 3, 4],
-				'y': [10, 11, 12, 13],
+				'y': x_link,
 					'mode': 'markers',
-				'marker': { 'color': ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-				'opacity': [1, 0.8, 0.6, 0.4],
-				'size': [40, 60, 80, 100]
+				'marker': { 'color': clr,
+				'opacity': op,
+				'size': sz
 				 }
 				}],
 				'layout': {'title': 'Marker Size and Color'}
