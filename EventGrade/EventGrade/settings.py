@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'home.apps.HomeConfig',
     'waitBackened.apps.WaitbackenedConfig',
-    'visuals.apps.VisualsConfig',
 ]
 
 MIDDLEWARE_CLASSES = [

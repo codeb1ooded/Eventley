@@ -18,12 +18,10 @@ from django.contrib import admin
 from EventGrade.views import hello
 from  EventGrade.views import my_homepage_view
 from waitBackened.views import wait_for_backend
-from visuals.views import plot_p
 
 urlpatterns = [
     url(r'^$', my_homepage_view),
     url(r'^admin/', admin.site.urls),
     url(r'^hello/$', hello),
     url(r'^wait/$', wait_for_backend),
-    url(r'^visual/$', plot_p),
 ]
