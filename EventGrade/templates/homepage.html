@@ -1,39 +1,10 @@
 <html> 
 <head> 
-  <link rel="stylesheet" type="text/css"
-  href="https://fonts.googleapis.com/css?family=Kavoon|Lobster|Bungee">
-  <title> EventGrade </title> 
-  <style type="text/css"> 
-  .likeabutton { 
-    text-decoration: none; 
-    font: menu; 
-    display: inline-block; 
-    padding: 2px 8px; 
-    background: ButtonFace; 
-    color: ButtonText; 
-    border-style: solid; 
-    border-width: 2px; 
-    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight; 
-  } 
-  #map {
-    width: 100%;
-    height: 400px;
-  }
-  h1{text-align:center;
-    font-family:Bungee;
-    color:purple;}
-    body{background-color:lightgreen;}
-    .home{text-align:center;
-      font-family:Lobster;
-      font-size:20px;}
-      .home1{text-align:center;
-        font-family:Kavoon;
-        font-size:25px;
-        color:blue;}
-        </style> 
+  <title> Eventley </title> 
+  <link rel="stylesheet" type="text/css" href="/static/css/homepage.css">
       </head> 
       <body> 
-        <h1> Welcome to EventGrade </h1>
+        <h1> Welcome to Event<i>ley</i></h1>
         <br><br>
         <div id="map"></div>
         <script type="text/javascript">
@@ -119,11 +90,13 @@
                 </tr>
               </table>
             </div>
+            
             <div class="home1">
               <p>If we get you right please submit below: </p>
-              <input type="submit" value="Submit" onclick="return enableInput()">
+              <button><input class="button"type="submit" value="Submit" onclick="return enableInput()"></button>
+            </div>
             </form>
-          </div>
+          
           <br><br>
           <script type="text/javascript">
           function enableInput(){
