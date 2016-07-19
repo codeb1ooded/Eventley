@@ -13,11 +13,10 @@
 		border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
 	}
 
-       body{background-color:	#00bfff;}
+       body{background-color:lightgreen;}
        h1{color:purple;
           text-align:center;
-          font-family:Kavoon;
-          font-size:50px;}
+          font-family:Kavoon;}
 .data1{text-align:center;
 font-family:Lobster;
 font-size:20px;}
@@ -36,12 +35,7 @@ font-family:Lobster;
 font-size:20px;}
 .data4{font-family:Lobster;
 font-size:20px;}
-body {
-    background-image: url("back1.jpg");
-}
-#user_input_submit_button
-	{
-	-moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
+.button{-moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
 	-webkit-box-shadow:inset 0px 39px 0px -24px #e67a73;
 	box-shadow:inset 0px 39px 0px -24px #e67a73;
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e4685d), color-stop(1, #eb675e));
@@ -56,17 +50,18 @@ body {
 	-webkit-border-radius:18px;
 	border-radius:18px;
 	border:1px solid #ffffff;
+	[3
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size: 40px;
+	font-size:29px;
 	padding:11px 41px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #b23e35;
 
 
 }
-#user_input_submit_button:hover {
+.button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eb675e), color-stop(1, #e4685d));
 	background:-moz-linear-gradient(top, #eb675e 5%, #e4685d 100%);
 	background:-webkit-linear-gradient(top, #eb675e 5%, #e4685d 100%);
@@ -76,18 +71,16 @@ body {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb675e', endColorstr='#e4685d',GradientType=0);
 	background-color:#eb675e;
 }
-#user_input_submit_button:active {
+.button:active {
 	position:relative;
 	top:1px;
 }
-
 
 	</style>
 </head>
 
 <body>
-	<h1>Eventley</h1>
-	<img style="left-margin:0px 10px 0px 10px; position:absolute; " align="middle" class=logo src="eventley.jpg" />
+	<h1>Welcome to Event Grade </h1>
 	<form action="\wait\">
 <div class="data1">
 		<p>Location you selected: </p>
@@ -143,12 +136,6 @@ body {
               var bool = isEmpty();
               if(bool == true){
               	alert("clear");
-                document.getElementById("latitudep").style.visibility = "hidden";
-                document.getElementById("latitude").style.visibility = "hidden";
-		document.getElementById("longtitudep").style.visibility = "hidden";
-		document.getElementById("longtitude").style.visibility = "hidden";
-		document.getElementById("covered_area").style.visibility = "hidden";
-		document.getElementById("units_distance").style.visibility = "hidden";
               	document.write("Please Wait while we load data...");
               }
               return bool;
