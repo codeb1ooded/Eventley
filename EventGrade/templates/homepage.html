@@ -1,7 +1,7 @@
 <html> 
 <head> 
-<link rel="stylesheet" type="text/css"
-      href="https://fonts.googleapis.com/css?family=Kavoon|Lobster|Bungee">
+  <link rel="stylesheet" type="text/css"
+  href="https://fonts.googleapis.com/css?family=Kavoon|Lobster|Bungee">
   <title> EventGrade </title> 
   <style type="text/css"> 
   .likeabutton { 
@@ -19,33 +19,33 @@
     width: 100%;
     height: 400px;
   }
-h1{text-align:center;
-font-family:Bungee;
-color:purple;}
-body{background-color:lightgreen;}
-.home{text-align:center;
-font-family:Lobster;
-font-size:20px;}
-.home1{text-align:center;
-font-family:Kavoon;
-font-size:25px;
-color:blue;}
-  </style> 
-</head> 
-<body> 
-  <h1> Welcome to EventGrade </h1>
-  <br><br>
-  <div id="map"></div>
-  <script type="text/javascript">
-  var markers = [];
-  function initMap() {
-    var mapDiv = document.getElementById('map');
-    var myLatLng = {lat: 28.6139, lng: 77.2090};
-    var map = new google.maps.Map(mapDiv, {
-      center: myLatLng,
-      zoom: 8,
-      mapTypeId: google.maps.MapTypeId.TERRAIN
-    });
+  h1{text-align:center;
+    font-family:Bungee;
+    color:purple;}
+    body{background-color:lightgreen;}
+    .home{text-align:center;
+      font-family:Lobster;
+      font-size:20px;}
+      .home1{text-align:center;
+        font-family:Kavoon;
+        font-size:25px;
+        color:blue;}
+        </style> 
+      </head> 
+      <body> 
+        <h1> Welcome to EventGrade </h1>
+        <br><br>
+        <div id="map"></div>
+        <script type="text/javascript">
+        var markers = [];
+        function initMap() {
+          var mapDiv = document.getElementById('map');
+          var myLatLng = {lat: 28.6139, lng: 77.2090};
+          var map = new google.maps.Map(mapDiv, {
+            center: myLatLng,
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+          });
           		// Try HTML5 geolocation.
               if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(function(position) {
@@ -103,33 +103,43 @@ color:blue;}
            <br><br><br><br>
 
            <form action="/hello/" method="get">
-<div class="home">
-            <table>
-              <tr>
-                <th> Your location is : </th>
-                <th> {{ location_words }} </th>
-              </tr>
-              <tr>
-                <th> With latitude: </th>
-                <th> <input id="latitude" type="text" name="latitude" disabled> </th>
-              </tr>
-              <tr>
-                <th> And longtitude: </th>
-                <th> <input id="longtitude" type="text" name="longtitude" disabled> </th>
-              </tr>
-            </table>
-</div>
-<div class="home1">
-            <p>If we get you right please submit below: </p>
-            <input type="submit" value="Submit" onclick="enableInput()">
-          </form>
-</div>
+            <div class="home">
+              <table>
+                <tr>
+                  <th> Your location is : </th>
+                  <th> {{ location_words }} </th>
+                </tr>
+                <tr>
+                  <th> With latitude: </th>
+                  <th> <input id="latitude" type="text" name="latitude" disabled> </th>
+                </tr>
+                <tr>
+                  <th> And longtitude: </th>
+                  <th> <input id="longtitude" type="text" name="longtitude" disabled> </th>
+                </tr>
+              </table>
+            </div>
+            <div class="home1">
+              <p>If we get you right please submit below: </p>
+              <input type="submit" value="Submit" onclick="return enableInput()">
+            </form>
+          </div>
           <br><br>
           <script type="text/javascript">
-            function enableInput(){
-              document.getElementById('latitude').disabled=false;
-              document.getElementById('longtitude').disabled=false;
+          function enableInput(){
+            document.getElementById('latitude').disabled=false;
+            document.getElementById('longtitude').disabled=false;
+            return isEmpty();
+          }
+          function isEmpty () {
+            var el = document.getElementById("latitude");
+            var e2 = document.getElementById("longtitude");
+            if ((el !== null && el.value === "") || (e2 !== null && e2.value === "")){
+              alert("Please choose your location!!");
+              return false;
             }
+            return true;
+          }
           </script>
         </body> 
         </html>

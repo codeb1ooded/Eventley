@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^$', my_homepage_view),
     url(r'^admin/', admin.site.urls),
     url(r'^hello/$', hello),
+    url(r'^wait/$', wait_for_backend),
     url(r'^visual/$', plot_p),
 ]

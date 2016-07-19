@@ -125,7 +125,7 @@ font-size:20px;}
 </div>
 <br><br><br><br>
 <div class="button">
-<center><input type="submit" value="Submit" id="user_input_submit_button" name="user_input_submit_button" onclick="enableInput()"></center>
+<center><input type="submit" value="Submit" id="user_input_submit_button" name="user_input_submit_button" onclick="return enableInput()"></center>
 </div>
 </form>
 
@@ -133,7 +133,16 @@ font-size:20px;}
             function enableInput(){
               document.getElementById('latitude').disabled=false;
               document.getElementById('longtitude').disabled=false;
+              return isEmpty();
             }
+          	function isEmpty () {
+            	var el = document.getElementById("covered_area");
+            	if (el !== null && el.value === ""){
+            	  alert("Please choose area you want to cover!!");
+            	  return false;
+            	}
+            	return true;
+          	}
           </script>
 
 </body>	
