@@ -34,16 +34,16 @@ def wait_for_backend(request):
     		
    		
 		scatter_diag = plot([Scatter(x=[1, 2, 3], y=[3, 1, 6])], filename='my-graph.html', auto_open=False, output_type='div')
-    	bar_diag = plot([Bar(x=['1', '2', '3'], y=[13, 10, 50])], filename='my-bar.html', auto_open=False, output_type='div')
-    	fig = {
+		bar_diag = plot([Bar(x=['1', '2', '3'], y=[13, 10, 50])], filename='my-bar.html', auto_open=False, output_type='div')
+		fig = {
 			'data': [{'labels': ['Residential', 'Non-Residential', 'Utility'],
 			'values': [19, 26, 55],
 			'type': 'pie',
-	        'name': 'Event Comparison',
-		    'text': 'likes',
-	    	'textposition': 'inside',
-	        'hoverinfo': 'label+percent+name',
-		    'hole': .4,}],
+			'name': 'Event Comparison',
+			'text': 'likes',
+			'textposition': 'inside',
+			'hoverinfo': 'label+percent+name',
+			'hole': .4,}],
 			'layout': {'title': 'Event Comparison',
 			'annotations': [{'showarrow': 'False', 'text': 'likes'}]}
 			}
