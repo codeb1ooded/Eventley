@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.template import Context, loader, Template
 from django.template.loader import get_template
 from django.shortcuts import render
-
+from waitBackened.models import event
 """ Create a plotly graph locally as an HTML document or string.
     Example:
     ```
@@ -62,14 +62,8 @@ from django.shortcuts import render
     """
 
 def plot_p(request):
-    scatter_diag = plot([Scatter(x=[1, 2, 3], y=[3, 1, 6])], filename='my-graph.html', auto_open=False, output_type='div')
-    bar_diag = plot([Bar(x=['1', '2', '3'], y=[13, 10, 50])], filename='my-bar.html', auto_open=False, output_type='div')
-    fig = {
-		'data': [{'labels': ['Residential', 'Non-Residential', 'Utility'],
-		'values': [19, 26, 55],
-		'type': 'pie'}],
-		'layout': {'title': 'Event Comparison'}
-		}
+    
+   
     pie_chart = plot(fig, filename='my-pie.html', auto_open=False, output_type='div')
     utf8 = [scatter_diag, u'<br>', bar_diag, u'<br>', pie_chart]
     html = ''.join(utf8) #str(scatter_diag) + u'<br>' + str(bar_diag) + u'<br>' + str(pie_chart)

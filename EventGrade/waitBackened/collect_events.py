@@ -33,6 +33,7 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 	file_name = "csv/"+select_category_event + '.csv'
 	count=0
 	links=0 
+	li=[]
 	with open(file_name,'rb') as csvfile:
 		with open('csv/datafile.csv','a+') as csvfile1:
 			#fieldnames = ['id', 'title', 'venue_name', 'number_of_likes', 'number_of_comments', 'key']
@@ -54,6 +55,10 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							calculateKm = haversine(float(longtitude), float(latitude), float(Event['longitude']), float(Event['latitude']))
 							distanceScore = (float(distanceKm) - float(calculateKm)) * 100
 							distanceScore = distanceScore / distanceKm
+							#list for event-id
+							li[i] = Event['id']
+							print li[i]
+							######
 							eventobj = event()
 							eventobj.Eventid = Event['id']
 							eventobj.Eventname = Event['title']
@@ -78,5 +83,6 @@ def event_collection(latitude, longtitude, covered_area, units_distance, select_
 							eventobj.save()
 							count=count+1
 							print count
+							return li
 				except:
 					print 'exception'
