@@ -84,9 +84,9 @@ font-size:20px;}
 	<form action="\wait\">
 <div class="data1">
 		<p>Location you selected: </p>
-		<p>Latitude:
+		<p id="latitudep">Latitude:
 		<input id="latitude" type="text" name="latitude" value="{{ latitude }}" disabled></p>
-		<p>Longtitude: 
+		<p id="longtitudep">Longtitude: 
 		<input id="longtitude" type="text" name="longtitude" value="{{ longtitude }}" disabled></p><br>
 
 	<p>Enter the area to cover: </p>
@@ -107,7 +107,7 @@ font-size:20px;}
 </div>
 	<br><br><br>
 <div class="data4"
-	<p><center> Select your category:</center></p>
+	<p id="selectp"><center> Select your category:</center></p>
 </div>
 <div class="data3">
 	<table>
@@ -133,7 +133,12 @@ font-size:20px;}
             function enableInput(){
               document.getElementById('latitude').disabled=false;
               document.getElementById('longtitude').disabled=false;
-              return isEmpty();
+              var bool = isEmpty();
+              if(bool == true){
+              	alert("clear");
+              	document.write("Please Wait while we load data...");
+              }
+              return bool;
             }
           	function isEmpty () {
             	var el = document.getElementById("covered_area");

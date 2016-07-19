@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.shortcuts import render
 from waitBackened.collect_events import *
+from django.http import HttpResponseRedirect
 
 def wait_for_backend(request):
 	if 'units_distance' in request.GET:
@@ -13,4 +14,4 @@ def wait_for_backend(request):
 		units_distance = request.GET['units_distance']
 		select_category_event = request.GET['select_category_event']
 		event_collection(latitude, longtitude, covered_area, units_distance, select_category_event)
-	return HttpResponse(latitude)
+	return HttpResponseRedirect("/visual/")
