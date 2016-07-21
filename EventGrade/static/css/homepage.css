@@ -22,13 +22,9 @@
    img{
           display: block;
           margin: auto;
-          width:40%;
-        }
-        img{
-          margin : 0 0 0 100px;
-          margin: auto;
           width:20%;
         }
+       
   .button
   {
   -moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
@@ -82,7 +78,7 @@
       text-align:center;
       font-family:Lobster;
       font-color:black;
-      font-size:20px;
+      font-size:100px;
     }
      .home1{
         margin: auto;

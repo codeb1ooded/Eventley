@@ -6,7 +6,7 @@
       <body> 
         <h1> Welcome to Event<i>ley</i></h1>
         <img id=logo src="/static/css/logo.png" />
-        <br><br>
+        <br>
         <div id="map"></div>
         <script type="text/javascript">
         var markers = [];
@@ -78,22 +78,22 @@
             <div class="home">
               <table>
                 <tr>
-                  <th> Your location is : </th>
+                  <th style="font-size:30px"> Your location is : </th>
                   <th> {{ location_words }} </th>
                 </tr>
                 <tr>
-                  <th> With latitude: </th>
-                  <th> <input id="latitude" type="text" name="latitude" disabled> </th>
+                  <th style="font-size:30px"> With latitude: </th>
+                  <th> <input style="font-size:30px" id="latitude" type="text" name="latitude" disabled> </th>
                 </tr>
                 <tr>
-                  <th> And longtitude: </th>
-                  <th> <input id="longtitude" type="text" name="longtitude" disabled> </th>
+                  <th style="font-size:30px"> And longtitude: </th>
+                  <th> <input style="font-size:30px" id="longtitude" type="text" name="longtitude" disabled> </th>
                 </tr>
               </table>
             </div>
             
             <div class="home1">
-              <p>If we get you right please submit below: </p>
+              <p style="font-size:30px">If we get you right please submit below: </p>
               <button><input class="button"type="submit" value="Submit" onclick="return enableInput()"></button>
             </div>
             </form>
