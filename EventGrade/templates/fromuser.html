@@ -9,20 +9,20 @@
 	<img src="/static/css/logo.png" />
 	<form action="\wait\">
 <div class="data1">
-		<p>Location you selected: </p>
-		<p id="latitudep">Latitude:
-		<input id="latitude" type="text" name="latitude" value="{{ latitude }}" disabled></p>
-		<p id="longtitudep">Longtitude: 
-		<input id="longtitude" type="text" name="longtitude" value="{{ longtitude }}" disabled></p><br>
+		<p style="font-size:20px">Location you selected: </p>
+		<p style="font-size:20px" id="latitudep">Latitude:
+		<input style="font-size:20px" id="latitude" type="text" name="latitude" value="{{ latitude }}" disabled></p>
+		<p style="font-size:20px" id="longtitudep">Longtitude: 
+		<input style="font-size:20px" id="longtitude" type="text" name="longtitude" value="{{ longtitude }}" disabled></p><br>
 
-	<p>Enter the area to cover: </p>
+	<p style="font-size:25px">Enter the area to cover: </p>
 </div>
 <div id='t'>
 <div class="data2">	
 		<table>
 			<tr>
-				<th><center><input type="number" id="covered_area" name="covered_area"></th>
-				<th><center><select id="units_distance" name="units_distance">
+				<th style="font-size:25px" ><center><input type="number" id="covered_area" name="covered_area"></th>
+				<th style="font-size:25px" ><center><select id="units_distance" name="units_distance">
 					<option value="miles"> Miles </option>
 					<option value="km"> Kilometers </option>
 					<option value="m"> Metres </option>
@@ -34,17 +34,17 @@
 </div>
 	<br><br><br>
 <div class="data4">
-	<p id="selectp"><center> Select your category:</center></p>
+	<p style="font-size:35px" id="selectp"><center> Select your category:</center></p>
 </div>
 <div class="data3">
 	<table>
-		<tr>
-			<th><select id="select_category_event" name="select_category_event">
-				<option value="education"> Education </option>
-				<option value="fun"> Fun </option>
-				<option value="social"> Social </option>
-				<option value="cultural"> Cultural </option>
-				<option value="sports"> Sports </option>
+		<tr >
+			<th><select style="font-size:25px"  id="select_category_event" name="select_category_event">
+				<option style="font-size:25px" value="education"> Education </option>
+				<option style="font-size:25px" value="fun"> Fun </option>
+				<option style="font-size:25px" value="social"> Social </option>
+				<option  style="font-size:25px"value="cultural"> Cultural </option>
+				<option  style="font-size:25px" value="sports"> Sports </option>
 			</select>
 		</th>
 	</tr>

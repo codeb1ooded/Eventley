@@ -32,6 +32,9 @@ font-family:Lobster;
 font-size:20px;
 font-color:white
 }
+.select_p{
+	color: red;
+}
 .data3{left: 50%;
   right: auto;
   text-align: center;
