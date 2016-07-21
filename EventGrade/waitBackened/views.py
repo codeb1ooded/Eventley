@@ -7,6 +7,36 @@ from django.template.loader import get_template
 from django.shortcuts import render
 from waitBackened.collect_events import *
 from django.http import HttpResponseRedirect
+import eventful
+import codecs
+import random
+from math import radians, cos, sin, asin, sqrt
+from waitBackened.models import event 
+from waitBackened.weather import *
+import datetime
+from array import *
+
+api = eventful.API('mhRcqWrPnjbF86T2')
+img=1
+
+def haversine(lon1, lat1, lon2, lat2):
+	lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+	dlon = lon2 - lon1 
+	dlat = lat2 - lat1
+	a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+	c = 2 * asin(sqrt(a)) 
+	km = 6367 * c
+	return km
+
+def inKilometeres(distance, units):
+	abc = distance
+	if units == 'miles':
+		abc = distance * 1.60934
+	elif units == 'km':
+		abc = distance
+	else:
+		abc = 0.001 * distance
+	return abc
 
 def wait_for_backend(request):
 	if 'units_distance' in request.GET:
@@ -15,30 +45,81 @@ def wait_for_backend(request):
 		covered_area = request.GET['covered_area']
 		units_distance = request.GET['units_distance']
 		select_category_event = request.GET['select_category_event']
-		li=event_collection(latitude, longtitude, covered_area, units_distance, select_category_event)
-		#j=len(li)
-		i=0
+		file_name = "csv/"+select_category_event + '.csv'
+		count=0
+		links=0 
+		li=[]
+		j=0
 		x_comm = []
-		x_likes = []
-		x_name = []
-		x_link = []
-		x_score = []
-		#Database starts now!!!
-    	event.objects.order_by('-Date','-score')
-    	print len(li)
-    	for i in range(0, len(li)):
-    		idd=li[i]
-    		ab = event.objects.filter(Eventid = idd).values()
-    		for j in range(0, len(li)):
-    			x_comm.append(ab[j]['Nocomments'])
-    			x_likes.append(ab[j]['Nolikes'])
-    			x_name.append(ab[j]['Eventname'])
-    			x_link.append(ab[j]['NoImages'])
-    			x_score.append(int(ab[j]['Score']))
+		x_likes = [] #array(1000)
+		x_name = [] #array(1000)
+		x_link = [] #array(1000)
+		x_score = [] #array(1000)
+		with open(file_name,'rb') as csvfile:
+			with open('csv/datafile.csv','a+') as csvfile1:
+				data = csv.reader(csvfile)
+				for row in data:
+					key=''.join(row)
+					i=0
+       		
+					events_1 = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"")
+					num_of_pages = int(events_1['page_count'])
+					print num_of_pages
+					distanceKm = inKilometeres(float(covered_area), units_distance)
+					try:
+					  for i in range(0, num_of_pages):
+						events = api.call('/events/search', q=key, l=latitude+", "+longtitude, within=covered_area+"", units=units_distance+"", 	page_number=i)
+						for Event in events['events']['event']:
+							comm = random.randint(10, 50) 
+							likes = random.randint(500, 1000)
+							calculateKm = haversine(float(longtitude), float(latitude), float(Event['longitude']), float(Event['latitude']))
+							distanceScore = (float(distanceKm) - float(calculateKm)) * 100
+							distanceScore = distanceScore / distanceKm
+							#list for event-id
+							print Event['id']
+							######
+							eventobj = event()
+							eventobj.Eventid = Event['id']
+							eventobj.Eventname = Event['title']
+							eventobj.Venuename = Event['venue_name']
+							eventobj.Nolikes = likes
+							eventobj.Category = key
+							eventobj.Nocomments = comm
+							eventCall = api.call('/events/get',id = Event['id'], image_sizes="block16")
+							print eventobj.Eventname
+							images = 0
+							if eventCall['images']:
+								for image in eventCall['images']:
+									images = images + 1
+							eventobj.NoImages = images
+							if eventCall['links']:
+								for image in eventCall['links']:
+									links = links + 1
+							eventobj.Nolinks = links
+							eventobj.Date = eventCall['start_time']
+							days = int(calculateDays(eventCall['start_time']))
+							weatherScore = int(Weather(Event['latitude'], Event['longitude'], days))
+							eventobj.Score = (0.25 * distanceScore + 0.75 * eventobj.Nolikes + eventobj.Nocomments + 2 * images + 1.5 * links) * weatherScore / 2 
 
-		if len(ab) >= 10 : 
+    							ab = event.objects.filter(Eventid = Event['id']).values()
+    							x_comm.append(eventobj.Nocomments)
+    							x_likes.append(eventobj.Nolikes)
+				    			x_name.append(eventobj.Eventname)
+				    			x_link.append(images)
+				    			x_score.append(eventobj.Score)
+							eventobj.save()
+							count=count+1
+							print count
+					except:
+						print 'key error'
+		#j=len(li)
+		#Database starts now!!!
+    #	event.objects.order_by('-Date','-score')
+    #	print len(li)
+
+		if len(x_name) >= 10 : 
 			fig = {
-				'data': [{'x':[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+				'data': [{'x': x_name[:10],
 				'y': x_likes[:10],
 				'type': 'scatter',
 				'mode': 'lines',
@@ -47,7 +128,7 @@ def wait_for_backend(request):
 			}
 			scatter_diag = plot(fig, filename='my-graph.html', auto_open=False, output_type='div')
 			fig = {
-				'data': [{'x':[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+				'data': [{'x': x_name[:10],
 				'y': x_comm[:10],
 				'type': 'bar'
 				}],
@@ -55,7 +136,7 @@ def wait_for_backend(request):
 			}
 			bar_diag = plot(fig, filename='my-bar.html', auto_open=False, output_type='div')
 			fig = {
-			'data': [{'labels': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+			'data': [{'labels': x_name[:10],
 				'values': x_score[:10],
 				'type': 'pie',
 				'name': 'Score',
@@ -68,7 +149,7 @@ def wait_for_backend(request):
 				}
 			pie_chart = plot(fig, filename='my-pie.html', auto_open=False, output_type='div')
 			fig = {
-				'data': [{'x':[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+				'data': [{'x': x_name[:10],
 				'y': x_link[:10],
 					'mode': 'markers',
 				'marker': { 'color': ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(0,255,255)', 'rgb(255,0,255)', 'rgb(192,192,192)', 'rgb(128,0,0)', 'rgb(128,128,0)', 'rgb(128,0,128)'],
@@ -84,7 +165,7 @@ def wait_for_backend(request):
 			op = []
 			sz = []
 			clr = []
-			for i in range(0, len(ab)):
+			for i in range(0, len(x_name)):
 				arr.append(i)
 				op.append((10-i)*0.1)
 				sz.append(100)
@@ -109,7 +190,7 @@ def wait_for_backend(request):
 				elif i == 9:
 					clr.append('rgb(128,0,128)')
 			fig = {
-				'data': [{'x':arr,
+				'data': [{'x': x_name,
 				'y': x_likes,
 				'type': 'scatter',
 				'mode': 'lines',
@@ -118,7 +199,7 @@ def wait_for_backend(request):
 			}
 			scatter_diag = plot(fig, filename='my-graph.html', auto_open=False, output_type='div')
 			fig = {
-				'data': [{'x':arr,
+				'data': [{'x': x_name,
 				'y': x_comm,
 				'type': 'bar'
 				}],
@@ -126,7 +207,7 @@ def wait_for_backend(request):
 			}
 			bar_diag = plot(fig, filename='my-bar.html', auto_open=False, output_type='div')
 			fig = {
-			'data': [{'labels': arr,
+			'data': [{'labels': x_name,
 				'values': x_score,
 				'type': 'pie',
 				'name': 'Score',
@@ -139,7 +220,7 @@ def wait_for_backend(request):
 				}
 			pie_chart = plot(fig, filename='my-pie.html', auto_open=False, output_type='div')
 			fig = {
-				'data': [{'x':[1, 2, 3, 4],
+				'data': [{'x': x_name,
 				'y': x_link,
 					'mode': 'markers',
 				'marker': { 'color': clr,
@@ -150,6 +231,6 @@ def wait_for_backend(request):
 				'layout': {'title': 'Marker Size and Color'}
 			}
 			bubble_diag = plot(fig, filename='my-bubble.html', auto_open=False, output_type='div')
-		utf8 = [scatter_diag, u'<br>', bar_diag, u'<br>', pie_chart, u'<br>', bubble_diag]
+		utf8 = [scatter_diag, u'<br><br><br><br><br>', bar_diag, u'<br><br><br><br><br>', pie_chart, u'<br><br><br><br><br>', bubble_diag]
 		html = ''.join(utf8) #str(scatter_diag) + u'<br>' + str(bar_diag) + u'<br>' + str(pie_chart)
 		return HttpResponse(html)
