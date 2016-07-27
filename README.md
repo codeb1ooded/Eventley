@@ -4,18 +4,23 @@ To analyze popularity of events near user specified location based on number of 
 Languages used: Python, Django, Html, Css, JS
 
 ##Setup (Commands are for linux)
-Install python <br/>
-Install pip ( sudo apt-get install python-pip python-dev build-essential) <br/>
-Install djnago (sudo pip install Django==1.9.7) <br/>
-Install MySQLDB (sudo apt-get install python-mysqldb) <br/>
-Install python unicodecsv module (sudo pip install unicodecsv) <br/>
-Install python library of JSON (sudo pip install simplejson) <br/>
-Go to link: http://api.eventful.com/libs/python/ and install python library of eventful as per mentioned in link. <br/>
-Install plotly python library (sudo pip install plotly) <br/>
-Clone the repository: git clone https://github.com/megha-code/OSM-EventGrade.git <br/>
-Move to your clone repo folder: ~/OSM-EventGrade/Eventgrade/ <br/>
-Open in terminal and type "python manage.py runserver" <br/>
-Hey you are good to go and your server is rnning. Now you can visit : 127.0.0.1:8000/
+* Install python <br/>
+* Install pip ( sudo apt-get install python-pip python-dev build-essential) <br/>
+* Install djnago (sudo pip install Django==1.9.7) <br/>
+* Install MySQLDB (sudo apt-get install python-mysqldb) <br/>
+* Install python unicodecsv module (sudo pip install unicodecsv) <br/>
+* Install python library of JSON (sudo pip install simplejson) <br/>
+* Go to link: http://api.eventful.com/libs/python/ and install python library of eventful as per mentioned in link. <br/>
+* Install plotly python library (sudo pip install plotly) <br/>
+* Clone the repository: git clone https://github.com/megha-code/OSM-EventGrade.git <br/>
+* Move to your clone repo folder: ~/OSM-EventGrade/Eventgrade/ <br/>
+* Open in terminal and type "python manage.py runserver" <br/>
+* Hey you are good to go and your server is rnning. Now you can visit : 127.0.0.1:8000/
+ 
+####Admin Access:
+* Go to the link: 127.0.0.1:8000/admin/
+* Enter username as 'osn' and password as 'online 2016'
+* Now you can see the database and have admin access to your localmachine site
 
 
 ####Data Collection & Analysis
