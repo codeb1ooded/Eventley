@@ -3,6 +3,36 @@ To analyze popularity of events near user specified location based on number of 
 <br/>
 Languages used: Python, Django, Html, Css, JS
 
+##Screenshots:
+<p align="center">
+  <img src="images/eventley1.png" width="350"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/eventley2.png" width="350"/>
+</p>
+<p align="center">
+  <img src="images/eventley3.png" width="350"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/eventley4.png" width="350"/>
+</p>
+<p align="center">
+  <img src="images/eventley5.png" width="350"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/eventley6.png" width="350"/>
+</p>
+<p align="center">
+  <img src="images/eventley7.png" width="350"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/eventley8.png" width="350"/>
+</p>
+<p align="center">
+  <img src="images/eventley9.png" width="350"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/eventley10.png" width="350"/>
+</p>
+<p align="center">
+  <img src="images/eventley11.png" width="350"/>
+</p>
+
 ##Setup (Commands are for linux)
 * Install python <br/>
 * Install pip ( sudo apt-get install python-pip python-dev build-essential) <br/>
