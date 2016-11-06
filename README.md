@@ -42,7 +42,7 @@ Languages used: Python, Django, Html, Css, JS
 * Install python library of JSON (sudo pip install simplejson) <br/>
 * Go to link: http://api.eventful.com/libs/python/ and install python library of eventful as per mentioned in link. <br/>
 * Install plotly python library (sudo pip install plotly) <br/>
-* Clone the repository: git clone https://github.com/megha-code/OSM-EventGrade.git <br/>
+* Clone the repository: git clone https://github.com/codeb1ooded/OSM-EventGrade.git <br/>
 * Move to your clone repo folder: ~/OSM-EventGrade/Eventgrade/ <br/>
 * Open in terminal and type "python manage.py runserver" <br/>
 * Hey you are good to go and your server is rnning. Now you can visit : 127.0.0.1:8000/
