@@ -3,6 +3,8 @@ To analyze popularity of events near user specified location based on number of 
 <br/>
 Languages used: Python, Django, Html, Css, JS
 
+### <a href="https://eventley.herokuapp.com/"> View Demo </a>
+
 ##Screenshots:
 <p align="center">
   <img src="images/eventley1.png" width="350"/>
