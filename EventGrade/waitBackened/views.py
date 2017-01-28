@@ -7,7 +7,7 @@ from django.template.loader import get_template
 from django.shortcuts import render
 import csv
 from django.http import HttpResponseRedirect
-import eventful
+from waitBackened.eventful import *
 import codecs
 import random
 from math import radians, cos, sin, asin, sqrt
@@ -16,7 +16,7 @@ from waitBackened.weather import *
 import datetime
 from array import *
 
-api = eventful.API('WC9TDF3TpJzXXztH')
+api = API('WC9TDF3TpJzXXztH')
 img=1
 
 def haversine(lon1, lat1, lon2, lat2):

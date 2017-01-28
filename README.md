@@ -42,7 +42,6 @@ Languages used: Python, Django, Html, Css, JS
 * Install MySQLDB (sudo apt-get install python-mysqldb) <br/>
 * Install python unicodecsv module (sudo pip install unicodecsv) <br/>
 * Install python library of JSON (sudo pip install simplejson) <br/>
-* Go to link: http://api.eventful.com/libs/python/ and install python library of eventful as per mentioned in link. <br/>
 * Install plotly python library (sudo pip install plotly) <br/>
 * Clone the repository: git clone https://github.com/codeb1ooded/OSM-EventGrade.git <br/>
 * Move to your clone repo folder: ~/OSM-EventGrade/Eventgrade/ <br/>
